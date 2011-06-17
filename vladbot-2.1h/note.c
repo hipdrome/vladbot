@@ -37,6 +37,7 @@ extern	char	*notefile;
 
 extern	char	*time2small(long time);
 /* brage extern	int	time(); */
+extern int time();
 extern	int	userlevel(char *from);
 extern	int	shitlevel(char *from);
 extern	int	protlevel(char *from);

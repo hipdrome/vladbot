@@ -18,6 +18,7 @@
  * Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
  */
 
+#include <stdlib.h>
 #include <stdio.h>
 #include <strings.h>
 #include <string.h>
@@ -47,7 +48,7 @@ int bzero(char *, int);
 #endif /* NEXT */
 
 int 	fork ();
-int 	atoi (char *);
+/* brage int 	atoi (char *);*/
 void 	readcfg ();
 void 	readlevelfiles ();
 
@@ -94,7 +95,8 @@ void 	sig_segv ()
   	quit_all_bots (NULL, "Received SIGSEGV - core dumped");
   	globallog (ERRFILE, "SIGNING OFF: Segmentation violation (sigsegv) received");
   	dump_notelist ();
-  	exit (0);
+   exit (0); 
+
 }
 
 void 	bot_rehash ()
@@ -234,7 +236,7 @@ void main (int argc, char *argv[])
   	signal (SIGINT, sig_int);
   	signal (SIGBUS, sig_bus);
   	signal (SIGPIPE, sig_pipe);
-  	signal (SIGSEGV, sig_segv);
+   /* signal (SIGSEGV, sig_segv); */
 
   	if (do_fork)
     		if (!fork ())

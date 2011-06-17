@@ -6,8 +6,8 @@
 # These defines are supposed to work on Linux, Ultrix and SunOs 4.1.*
 # with a good ansi-C compiler (i.e. gcc)
 #
-#CFLAGS = -g  # for debugging with gdb/dbx
-CFLAGS = -O2 -s # -Wall
+CFLAGS = -O2 -g  # for debugging with gdb/dbx
+#CFLAGS = -O2 -s # -Wall
 CC = gcc
 #CC=cc
 RM = rm -f

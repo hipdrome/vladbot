@@ -19,6 +19,11 @@
  * Provide a ftp-ish interface for dcc
  */
 
+#include <sys/types.h>
+#include <sys/stat.h>
+#include <strings.h>
+#include <string.h>
+
 #ifdef NEXT
 #  include <sys/file.h>
 #  include <sys/dir.h>
@@ -26,10 +31,6 @@
 #  include <dirent.h>
 #  include <unistd.h>
 #endif /* NEXT */
-#include <sys/types.h>
-#include <sys/stat.h>
-#include <strings.h>
-#include <string.h>
 
 #include "config.h"
 #include "debug.h"

@@ -3,7 +3,8 @@
 /*
  * vlad-ons.h
  * Contains: on msg, on join
- *
+ * Tja, det er vel her alle funksjonar skal leggjast til eller trekkjast i fr}
+ * 
  */
 
 typedef	struct
@@ -75,10 +76,12 @@ void	do_kick(char *from, char *to, char *rest);
 void	do_listdcc( char *from, char *rest, char *to );
 void	do_rehash( char *from, char *rest, char *to );
 void	giveop( char *channel, char *nicks );
+void	givevoice( char *channel, char *nicks );
 int 	userlevel( char *from );
 int 	shitlevel( char *from );
 int 	protlevel( char *from );
 void	ban_user( char *who, char *channel );
 void	signoff( char *from, char *reason );
-
+void	do_action( char *from, char *to, char *rest );
+void	do_topic( char *from, char *to, char *rest );
 #endif /* VLAD_ONS_H */

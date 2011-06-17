@@ -2,21 +2,6 @@
  * send.c send stuff to the server, but not the basic stuff,
  *        more specified, like sendprivmsg, sendmode etc...
  * (c) 1993 VladDrac (irvbdwijk@cs.vu.nl)
- *
- * This program is free software; you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation; either version 2 of the License, or
- * (at your option) any later version.
- *
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
- *
- * You should have received a copy of the GNU General Public License
- * along with this program; if not, write to the Free Software
- * Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
- *
  */
 
 #include <stdio.h>
@@ -44,6 +29,19 @@ int	sendprivmsg(char *sendto, char *format, ...)
     	return(send_to_server("PRIVMSG %s :%s", sendto, buf));
 	va_end(msg);
 }
+
+int	sendaction(char *sendto, char *format, ...)
+{
+        char    buf[WAYTOBIG];
+        va_list msg;
+
+        va_start(msg, format);
+        vsprintf(buf, format, msg);
+        return(send_to_server( "PRIVMSG %s :\001ACTION %s\001", sendto, buf));
+        va_end(msg);
+}
+
+
 
 int	sendnotice(char *sendto, char *format, ...)
 {
@@ -73,10 +71,17 @@ int 	sendping(char *to)
     	return(send_to_server("PING %s", to));
 }
 
-int 	sendnick(char *nick)
+int 	sendping2(char *to)
 {
-    	return(send_to_server("NICK %s", nick));
+    	return(send_to_server("PONG :%s", to));
 }
+
+int     sendnick(char *nick)
+{
+        if(!send_to_server("NICK %s", nick))
+                return FAIL;
+        return(send_to_server("MODE %s +i", nick)); 
+} 
 
 int 	sendjoin(char *channel)
 {

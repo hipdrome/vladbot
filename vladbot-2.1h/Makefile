@@ -9,6 +9,7 @@
 #CFLAGS = -g  # for debugging with gdb/dbx
 CFLAGS = -O2 -s # -Wall
 CC = gcc
+#CC=cc
 RM = rm -f
 CP = cp -r
 INSTALL = install -s -m 700
@@ -33,8 +34,11 @@ DEFINES =
 # INCLUDES = -I/usr/ucbinclude -L/usr/ucblib
 # LIBS = -lucb
 
+#LIBS = -lsocket -lnsl -lgen
+LIBS =
+
 INSTALL_DIR = ..
-INSTALL_NAME = Robotz.new
+INSTALL_NAME = VladBot
 
 #
 # Don't change anything below here...

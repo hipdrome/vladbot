@@ -1,20 +1,6 @@
+
 /*
  * vlad-ons.c - kinda like /on ^.. in ircII
- * (c) 1993 VladDrac (irvdwijk@cs.vu.nl)
- *
- * This program is free software; you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation; either version 2 of the License, or
- * (at your option) any later version.
- *
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
- *
- * You should have received a copy of the GNU General Public License
- * along with this program; if not, write to the Free Software
- * Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
  */
 
 #include <stdlib.h>
@@ -58,27 +44,27 @@ command_tbl on_msg_commands[] =
 /*	Command		function   userlvl   shitlvl  forcedcc */
 {
 	{ "HELP",	show_help,	0,	100,	TRUE  }, 
-	{ "WHOAMI",	show_whoami,  	0,	100,	TRUE  },
-	{ "INFO",	show_info,	0,	100,	TRUE  },
+	{ "WHOAMI",	show_whoami,  	0,	100,	FALSE  },
+	{ "INFO",	show_info,	0,	100,	FALSE  },
 	{ "TIME",	show_time,	0,	100,	FALSE },	
 	{ "USERLIST",	show_userlist,	0,	100,	TRUE  },	
-	{ "SHITLIST",	show_shitlist,	0,	100,	TRUE  },
-	{ "PROTLIST",	show_protlist,	0,	100,	TRUE  },
-	{ "LISTDCC",	do_listdcc,	0,	100,	TRUE  },
+	{ "SHITLIST",	show_shitlist,	0,	100,	FALSE  },
+	{ "PROTLIST",	show_protlist,	0,	100,	FALSE  },
+	{ "LISTDCC",	do_listdcc,	0,	100,	FALSE  },
 	{ "CHAT",	do_chat,	0,	100,	FALSE },
 	{ "SEND",	do_send,	0,	100,	FALSE },
 	/* These two are just aliases for ftp-dcc		*/
 	{ "GET",	do_send,	0,	100,	FALSE },
 	{ "MGET",	do_send,	0,	100,	FALSE },
 	/* Some more ftp-dcc functions				*/
-	{ "LS",		show_dir,	0,	100,	TRUE  },
+	{ "LS",		show_dir,	0,	100,	FALSE  },
 	{ "PWD",	show_cwd,	0,	100,	FALSE },
 	{ "CD",		do_cd,		0,	100,	FALSE },
-	{ "QUEUE",	show_queue,	0,	100,	TRUE  },
-	{ "FILES",	do_flist,       0,      100,    TRUE  },
-	{ "FLIST",	do_flist,	0,	100,	TRUE  },
+	{ "QUEUE",	show_queue,	0,	100,	FALSE  },
+	{ "FILES",	do_flist,       0,      100,    FALSE  },
+	{ "FLIST",	do_flist,	0,	100,	FALSE  },
 	/* userlevel and dcc are dealt with within NOTE 	*/
-	{ "NOTE",	parse_note,	0,	100,	TRUE  },
+	/*{ "NOTE",	parse_note,	0,	100,	FALSE  },*/
 	/* userlevel and dcc are dealt with within GLOBAL 	*/
 	{ "GLOBAL",	parse_global,	0,	100,	FALSE },
 	{ "OP",		do_op, 		50,	0,	FALSE },
@@ -86,15 +72,15 @@ command_tbl on_msg_commands[] =
 	{ "DEOP",	do_deop,	50,	0,	FALSE },
 	{ "INVITE",	do_invite,	50,	0,	FALSE },
 	{ "OPEN",	do_open,	100,	0,	FALSE },
-	{ "SAY",	do_say,		100,	0,	FALSE },
-	{ "WHOIS",	show_whois,	100,	0,	TRUE  },
-	{ "NWHOIS",	show_nwhois,	100,	0,	TRUE  },
+	{ "SAY",	do_say,		50,	0,	FALSE },
+	{ "WHOIS",	show_whois,	100,	0,	FALSE  },
+	{ "NWHOIS",	show_nwhois,	100,	0,	FALSE  },
 	{ "NUSERADD",	do_nuseradd,	100,	0,	FALSE },
 	{ "USERWRITE",	do_userwrite,	100,	0,	FALSE },
 	{ "USERDEL",	do_userdel,	100,	0,	FALSE },
-	{ "NSHITADD",	do_nshitadd,	100,	0,	FALSE },
-	{ "SHITWRITE",	do_shitwrite,	100,	0,	FALSE },
-	{ "SHITDEL",	do_shitdel,	100,	0,	FALSE },
+	{ "NSHITADD",	do_nshitadd,	125,	0,	FALSE },
+	{ "SHITWRITE",	do_shitwrite,	125,	0,	FALSE },
+	{ "SHITDEL",	do_shitdel,	125,	0,	FALSE },
         { "PROTWRITE", 	do_protwrite,   100,    0,	FALSE },
         { "PROTDEL",   	do_protdel,     100,    0,	FALSE },
 	{ "BANUSER",	do_banuser,	100,	0,	FALSE },
@@ -107,20 +93,22 @@ command_tbl on_msg_commands[] =
 	{ "SHITADD",	do_shitadd,	125,	0,	FALSE },
         { "PROTADD",   	do_protadd,     125,    0,	FALSE },
         { "NPROTADD",  	do_nprotadd,    125,    0,	FALSE },
-	{ "CHANNELS",	show_channels,	125,	0,	TRUE  },
-	{ "SHOWUSERS",	do_showusers,	125,	0,	TRUE  },
-	{ "MASSOP",	do_massop,	125,	0,	FALSE },
-	{ "MASSDEOP",	do_massdeop,	125,	0,	FALSE },
-	{ "MASSKICK",	do_masskick,	125,	0,	FALSE },
-	{ "MASSUNBAN",	do_massunban,	125,	0,	FALSE },
+	{ "CHANNELS",	show_channels,	125,	0,	FALSE  },
+	{ "SHOWUSERS",	do_showusers,	125,	0,	FALSE  },
+	/*{ "MASSOP",	do_massop,	125,	0,	FALSE },*/
+	/*{ "MASSDEOP",	do_massdeop,	125,	0,	FALSE },*/
+	/*{ "MASSKICK",	do_masskick,	125,	0,	FALSE },*/
+	/*{ "MASSUNBAN",	do_massunban,	125,	0,	FALSE },*/
 	{ "SERVER",	do_server,	125,	0,	FALSE },
 	/* Priviliged commands					*/	
-	{ "FORK",	do_fork,	150,	0,	FALSE },
+	{ "FORK",	do_fork,	125,	0,	FALSE },
 	{ "REHASH",	do_rehash,	150,	0,	FALSE },
-	{ "DO",		do_do,		150,	0,	FALSE },
+	{ "DO",		do_do,		125,	0,	FALSE },
 	{ "DIE",	do_die,		150,	0,	FALSE },
 	{ "DIEDIE",	do_die,		150,	0,	FALSE },
 	{ "QUIT",	do_quit,	150,	0,	FALSE },
+	{ "ACTION",	do_action,	50,	0,	FALSE },
+	{ "TOPIC",	do_topic,	50,	0,	FALSE},
 	/*
 	 :
 	 :
@@ -156,6 +144,9 @@ void 	on_join(char *who, char *channel)
     	}
     	if(userlevel(who) >= AUTO_OPLVL && shitlevel(who) == 0)
         	giveop(channel, getnick(who));
+
+    	if(userlevel(who) == 10 && shitlevel(who) == 0)
+        	givevoice(channel, getnick(who));
 }
 
 void	on_mode(char *from, char *rest)
@@ -647,6 +638,31 @@ void	do_flist(char *from, char *to, char *rest)
 		send_to_user(from, s);
 	fclose(ls_file);
 }	
+
+void    do_action( char *from, char *to, char *rest )
+{
+        if(rest)
+                if(ischannel(to))
+                        sendaction(currentchannel(), "%s", rest);
+                else
+                        sendaction(currentchannel(), "%s", rest);
+        else
+                send_to_user(from, "I don't know what to do");
+        return;
+}
+
+void    do_topic( char *from, char *to, char *rest )
+{
+        if(rest)
+                if(ischannel(to))
+                        sendtopic(currentchannel(), rest);
+                else
+                        sendtopic(currentchannel(), rest);
+        else
+                send_to_user(from, "Current topic is: [argh. faens c-kode]");
+        return;
+}
+
 
 void	do_say(char *from, char *to, char *rest)
 {
@@ -1267,6 +1283,11 @@ void	do_rehash(char *from, char *to, char *rest)
 void 	giveop(char *channel, char *nicks )
 {
     	sendmode(channel, "+ooo %s", nicks);
+}
+
+void 	givevoice(char *channel, char *nicks )
+{
+    	sendmode(channel, "+vvv %s", nicks);
 }
 
 int 	userlevel(char *from)

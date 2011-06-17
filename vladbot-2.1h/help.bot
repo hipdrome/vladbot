@@ -17,59 +17,35 @@
 # I really should update this stuff more often....
 #
 %subject Standard
------------- \bBasic Help for \n version \v\b ------------ 
+------------ \bHelp index for \n version \v\b ------------ 
 These are the subjects about which further help can be requested.
-To get this help, type /msg \n help \b<topic>\b, where <topic> 
-the desired topic is. I.e. /msg \n help commands
-
-	\bCommands\b	- Commands to control the bot
-	\bUsers\b		- Everything you wanted to know about
-		          users, levels an more...
-	\bChannel\b		- What damage can this bot do to a channel?
-	\bFiletransfer\b	- All about \n's options for filetransfer
-	\bServices\b	- More info about services offered by \n
-	\bBot\b		- Some generic information about the bot,
-			  it's writers and where to get it.
+Note that the help system is \bmuch\b faster i you do a /dcc chat VladBot
+	Commands	- Commands to control the bot
+	Users		- Userlevel commands
+	Filetransfer	- All about \n's options for filetransfer
+	Services	- More info about services offered by \n
+	Bot		- Some generic information about the bot.
 
 %end # Standard
 %subject Commands
 
 Following commands can be used to control the bot. To get more 
-information, try /msg \n help <command>. Notice that when 
-using a command in public, a '!' should preceed the command. 
-Private sent commands don't require a leading '!'.
-
+information, try /msg \n help <command>. 
 	say		giveop		nick
 	join		leave		channels
 	do		diedie		showusers
-	fork
 
 %end # Commands
 %subject Users
 
-Well... here it is.. all the commands available to manage userlists 
-et all.
-
-	nuseradd	nprotadd	nshitadd
-	useradd		protadd		shitadd
-	userdel		protdel		shitdel
-	userlist	protlist	shitlist
-	userwrite	protwrite	shitwrite
-	showusers	whoami		whois
-	nwhois
-
+User commands
+	nuseradd	nprotadd	whois
+	useradd		protadd		showusers
+	userdel		protdel		nwhois
+	userlist	protlist	whoami
+	userwrite	protwrite
+	
 %end # Users
-%subject Channel
-
-This bot can be a real danger to a channel. These are the disasters 
-available
-
-	join		leave		open
-	unban		banuser		massunban
-	massop		massdeop	masskick
-Quite something, huh?
-
-%end # Channel
 %subject Filetransfer
 
 Yeah, some usefull options are available too. Amazing!
@@ -91,9 +67,9 @@ to me, i.e. /dcc send \n \busefull_file\b
 %subject Services
 Some "usefull" things I can do are:
 
-	note		time		chat
+	time		chat		info
 	send		files		invite
-	unban		open		info		
+	unban		open		
 
 %end # Services
 %subject Bot
@@ -127,10 +103,10 @@ Nick = \n, Version = \v
 #
 %Subject Whoami
 
-\bWHOAMI\b shows you your current levels (user, shit and protlevel)
+\bWHOAMI\b shows you your current levels (user and protlevel)
 This command wil work with any userlevel.
 
-\bSee also:\b USERLIST, PROTLIST, SHITLIST, WHOIS, 
+\bSee also:\b USERLIST, PROTLIST, WHOIS, 
           NWHOIS levels, getting_access
 
 %end
@@ -231,51 +207,6 @@ operation, a user/shitlevel of (0/0) is required
 a user/shitlevel of (100/0) is required
 
 \bSEE ALSO:\b USERLIST, USERADD, NUSERADD, USERDEL, levels
-
-%end
-%Subject Shitadd
-
-\bSHITADD\b adds a user with a specified level to the shitlist
-For this operation, a user/shitlevel of (100/0) is required
-
-\bSEE ALSO:\b SHITLIST, SHITDEL, NSHITADD, 
-          patterns, levels, getting_access
-
-%end
-%Subject Nshitadd
-
-\bNSHITADD\b adds a user with a specified level to the shitlist,
-just like \bSHITADD\b, only here you only need to specify the nick.
-The person who should be added must be one of the channels I'm on.
-For this operation, a user/shitlevel of (100/0) is required
-
-\bSEE ALSO:\b SHITLIST, SHITDEL, SHITADD, 
-          patterns, levels, getting_access
-
-%end
-%Subject Shitdel
-
-\bSHITDEL\b can be used to remove someone from the shitlist.
-This requires a user/shitlevel of (100/0)
-
-\bSEE ALSO:\b SHITLIST, SHITADD, NSHITADD,
-          levels, getting_access
-
-%end
-%Subject Shitlist
-
-\bSHITLIST\b will show a list of all users in the shitlist. For
-this operation, a user/shitlevel of (0/0) is required
-
-\bSEE ALSO:\b SHITDEL, SHITWRITE, levels, getting_access
-
-%end
-%Subject Shitwrite
-
-\bSHITWRITE\b will write the shitlist to disk. For this operation
-a user/shitlevel of (100/0) is required
-
-\bSEE ALSO:\b SHITLIST, SHITADD, NSHITADD, SHITDEL, levels
 
 %end
 %Subject Protadd
@@ -456,98 +387,6 @@ Example: *!*richie@*.chem.tue.nl
 
 \bSEE ALSO:\b USERLIST
 
-%end
-%subject Note
-
-\bNote\b Is a prefix command. Without any parameters, it 
-will show all waiting notes. When followed by a 
-notecommand, the notecommand will be executed.
-Available notecommands are:
-
-	create		delete		del
-	show		read		view
-	addline		addl		delline
-	dell		replaceline	repl
-	list		send		done
-
-(most of these commands are just aliases)
-
-All these commands work with minimal priviliges.
-
-To get more information about these command, type
-/msg \n !help note.<command>, i.e.
-/msg \n !help note.send
-This to prevent conflicts
-%end
-%subject note.create
-
-\bCreate\b is used to create a new note.
-
-Syntax:  !NOTE CREATE receiver subject
-Example: !NOTE CREATE *!*irvdwijk@*.cs.vu.nl Bug in \v
-
-Use the PUBLIC address to make the note readable for everyone,
-i.e. !NOTE CREATE PUBLIC To everyone...
-
-After this command, you can add lines to the note by typing
-\b/msg \n ADDL a line of text\b
-until you use the !NOTE SEND command
-
-The CREATE command will return a note-id. This id can be used to 
-delete the note before sending it (i.e. if you change your mind :)
-
-\bSEE ALSO:\b note.ADDLINE, note.SEND, note.DELETE
-%end
-%subject note.Send
-
-\bSend\b is used to finish a note. After the send command, 
-modification or viewing of the note is not possible, and 
-note note can be read by the recipent.
-
-Syntax:  !NOTE SEND
-
-Warning: Send should be prefixed by the Note command!
-
-\bSEE ALSO:\b note.CREATE, note.ADDLINE
-%end
-%subject note.Addl
-
-\bADDLINE\b (or \bADDL\b) is used to add lines to a note.
-
-Example: !NOTE ADDLINE Some text to add to the note
-Warning: \bADDLINE\b should be prefixed by the notecommand
-
-\bSEE ALSO:\b note.CREATE note.SEND
-%end
-%subject note.Addline
-
-\bADDLINE\b (or \bADDL\b) is used to add lines to a note.
-
-Example: !NOTE ADDLINE Some text to add to the note
-Warning: \bADDLINE\b should be prefixed by the notecommand
-
-\bSEE ALSO:\b note.CREATE note.SEND
-%end
-%subject note.List
-\bLIST\b will show a list of waiting notes. Notes from this
-list can be read using the !NOTE READ command. To delete a
-note, use the !NOTE DELETE command (PUBLIC notes cannot be
-deleted by a non-operator)
-
-\bSEE ALSO:\b note.READ note.DELETE
-%end
-%subject note.Delete
-\bDELETE\b is used to delete a note from the notelist. 
-The \bDELETE\b command expects a note-id.
-
-\bSEE ALSO:\b note.LIST
-%end
-%subject note.Read
-\bREAD\b enables you to read a note from the notelist.
-The \bREAD\b command expects a note-id
-
-\bSEE ALSO:\b note.DELETE note.LIST
-%end
 
 # End of the note-commands. Now the global commands (very short)
 

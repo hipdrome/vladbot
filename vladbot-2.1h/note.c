@@ -36,7 +36,7 @@ extern	botinfo	*currentbot;
 extern	char	*notefile;
 
 extern	char	*time2small(long time);
-extern	int	time();
+/* brage extern	int	time(); */
 extern	int	userlevel(char *from);
 extern	int	shitlevel(char *from);
 extern	int	protlevel(char *from);

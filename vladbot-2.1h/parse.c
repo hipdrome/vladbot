@@ -60,6 +60,7 @@ struct
 	{ "352",	parse_352	},
 	{ "367",	parse_367	},
 	{ "433",	parse_433	},
+	{ "437",	parse_433	}, /* Brage: temporarily unavailable-dritt */
 /*	{ "451",	parse_451	}, */
 	{ "471",	parse_471	},
 	{ "473",	parse_471	},
@@ -165,8 +166,10 @@ void	parse_ping(char *from, char *rest)
 {
 	char	localhost[64];
 
+   /* Her er vel feilen. Skal berre returnera PONG *rest eller noko*/
+   
 	gethostname(localhost, 64);
-       	sendping( localhost );
+       	sendping2( rest);
 	/* No need to make a seperate on_ping */
 	currentbot->lastping = time(NULL);
 }

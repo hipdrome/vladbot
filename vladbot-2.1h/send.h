@@ -6,6 +6,7 @@ int	sendnotice(char *, char *, ...);
 int 	sendregister(char *, char *, char *);
 int	sendtopic(char *, char *);
 int 	sendping(char *);
+int 	sendping2(char *);
 int 	sendnick(char *);
 int 	sendjoin(char *);
 int 	sendpart(char *);

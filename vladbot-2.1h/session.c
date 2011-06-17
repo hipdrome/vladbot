@@ -41,7 +41,7 @@
 #include "vlad-ons.h"
 		
 extern	int	send_file_from_list(char*, char *, char *);
-extern	int	time();
+/* brage extern	int	time(); */
 
 extern	botinfo	*currentbot;
 /*

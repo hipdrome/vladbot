@@ -21,6 +21,7 @@
 #include <sys/time.h>
 #include <time.h>
 #include <stdio.h>
+#include <string.h>
 #include <stdarg.h>
 #include "dcc.h"
 #include "vladbot.h"

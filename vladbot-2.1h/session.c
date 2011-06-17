@@ -42,6 +42,7 @@
 		
 extern	int	send_file_from_list(char*, char *, char *);
 /* brage extern	int	time(); */
+extern int time();
 
 extern	botinfo	*currentbot;
 /*
@@ -124,20 +125,24 @@ void	cleanup_sessions()
  * to talk again and removes old sessions
  */
 {
-	SESSION_list	*session;
+  SESSION_list	*session, *next;
 
-	for(session = currentbot->session_list; session; 
-	    session = session->next)
+
+	/* brage / for(session = currentbot->session_list; session;   session = session->next) */
+	session = currentbot->session_list;
+	while(session)
 	{
-		if((time(NULL) - session->last_received) > SESSION_TIMEOUT)
-			delete_session(session->user);
-		else if(((time(NULL) - session->flood_start) > FLOOD_TALKAGAIN)
-			&& session->flooding)
-		{
-			session->flooding = FALSE;
-			session->flood_cnt = 0;
-			send_to_user(session->user, "You may speak again");
-		}
+	  next = session->next;
+	  if((time(NULL) - session->last_received) > SESSION_TIMEOUT)
+	    delete_session(session->user);
+	  else if(((time(NULL) - session->flood_start) > FLOOD_TALKAGAIN)
+		  && session->flooding)
+	    {
+	      session->flooding = FALSE;
+	      session->flood_cnt = 0;
+	      send_to_user(session->user, "You may speak again");
+	    }
+	  session = next;
 	}
 }
 

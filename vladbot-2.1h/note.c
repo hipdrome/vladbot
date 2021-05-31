@@ -144,7 +144,9 @@ int	read_notelist()
 	if((nfile = fopen(notefile, "r")) == NULL)
 		return 0;
 
-	fscanf(nfile, "%d", &lastnote);
+	if (fscanf(nfile, "%d", &lastnote) != 1) {
+		printf("failed to read 'lastnote'!\n");
+	}
 	/* try to read the "Received by - line,
 	   continue if not eof encountered */
 	while(fscanf(nfile, "%s", buf) && !feof(nfile))
@@ -153,18 +155,26 @@ int	read_notelist()
 		if(!tmp)
 			return FALSE;
 		mstrcpy(&tmp->received_by, buf);
-		fscanf(nfile, "%s", buf);
+		if (fscanf(nfile, "%s", buf) != 1) {
+			printf("failed to read 'from'!\n");
+		}
 		mstrcpy(&tmp->from, buf);
-		fscanf(nfile, "%s", buf);
+		if (fscanf(nfile, "%s", buf) != 1) {
+			printf("failed to read 'to'!\n");
+		}
 		mstrcpy(&tmp->to, buf);
 		/* Skip the newline */
-		fgets(buf, MAXLEN, nfile);
-		fgets(buf, MAXLEN, nfile);
+		if (fgets(buf, MAXLEN, nfile) != 1) {
+			printf("failed to get 'newline'!\n");
+		}
+		if (fgets(buf, MAXLEN, nfile) != 1) {
+			printf("failed to get 'newline2'!\n");
+		} 
 		KILLNEWLINE(buf);
 		mstrcpy(&tmp->subject, buf);
 		fscanf(nfile, "%d", &tmp->note_id);		
 		fscanf(nfile, "%d", &tmp->finished);		
-		fscanf(nfile, "%u", &tmp->created);		
+		fscanf(nfile, "%lu", &tmp->created);		
 		/* Skip the newline and three reserved fields */
 		fgets(buf, MAXLEN, nfile);
 		fgets(buf, MAXLEN, nfile);

@@ -264,7 +264,8 @@ char	*expand_twiddle(char *s)
 		return s;
 }
 
-char 	*strcasestr(char *s1, char *s2)
+/* 
+char 	*strcasestr(const char *s1, const char *s2)
 {
     char n1[256], n2[256];
     int i;
@@ -278,3 +279,4 @@ char 	*strcasestr(char *s1, char *s2)
     n2[i] = '\0';
     return( strstr( n1,n2 ) );
 }
+*/

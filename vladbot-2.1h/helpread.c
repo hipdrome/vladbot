@@ -18,6 +18,7 @@
  */
 
 #include <stdio.h>
+#include <stdlib.h>
 #include "ftext.h"
 #include "config.h"
 
@@ -38,7 +39,7 @@ char	*topic;
 	fclose(f);
 }
 
-void	main(argc, argv)
+int	main(argc, argv)
 int	argc;
 char	**argv;
 
@@ -47,4 +48,5 @@ char	**argv;
 
 	for(i=1; i<argc; i++)
 		show_help(argv[i]);
+	return EXIT_SUCCESS;
 }

@@ -27,6 +27,6 @@ char	*mstrncpy(char **dest, char *src, int len);
 char	*get_token(char **src, char *token_sep);
 char	*get_string(char **src);
 char	*expand_twiddle(char *s);
-char	*strcasestr(char *s1, char *s2);
+char	*strcasestr(const char *s1,const char *s2);
 
 #endif /* MISC_H */

@@ -18,5 +18,5 @@ int	send_ctcp(char *, char *, ...);
 int 	sendison(char *);
 int 	senduserhost(char *);
 int	send_to_user(char *, char *, ...);
-
+int     sendaction(char *, char *, ...);
 #endif /* SEND_H */

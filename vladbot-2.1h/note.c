@@ -164,10 +164,10 @@ int	read_notelist()
 		}
 		mstrcpy(&tmp->to, buf);
 		/* Skip the newline */
-		if (fgets(buf, MAXLEN, nfile) != 1) {
+		if (fgets(buf, MAXLEN, nfile) == NULL) {
 			printf("failed to get 'newline'!\n");
 		}
-		if (fgets(buf, MAXLEN, nfile) != 1) {
+		if (fgets(buf, MAXLEN, nfile) == NULL) {
 			printf("failed to get 'newline2'!\n");
 		} 
 		KILLNEWLINE(buf);

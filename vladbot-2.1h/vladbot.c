@@ -301,7 +301,7 @@ int	forkbot(char *nick, char *login, char *name)
 	/* Try to create a unique botname */
 	strncpy(smallnick, nick, 5);
 	smallnick[5] = '\0';
-	sprintf(botname, "%s%d", smallnick, (int)(rand() % 10000));
+	snprintf(botname,sizeof(botname), "%s%d", smallnick, (int)(rand() % 10000));
 
 	if((newbot = add_bot(botname)))
 	{
@@ -580,9 +580,11 @@ void	parse_server_input( fd_set *read_fds )
 		if(botlist[i] && botlist[i]->server_sock != -1)
 		{
 			currentbot = botlist[i];
-			if( FD_ISSET( currentbot->server_sock, read_fds ) ) 
-				if( readln( line ) > 0 )
+			if( FD_ISSET( currentbot->server_sock, read_fds ) )
+			{
+			        if( readln( line ) > 0 ) {
 					parseline( line );
+			        }
 				else
 				{
 #ifdef DBUG
@@ -591,6 +593,7 @@ void	parse_server_input( fd_set *read_fds )
 					close(currentbot->server_sock);
 					currentbot->server_sock = -1;
 				}
+			}
 		}
 	}
 }

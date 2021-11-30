@@ -139,7 +139,7 @@ int	do_dcc(DCC_list *Client)
                         Descr = Client->description;  
                 if((Client->flags & DCC_TYPES) == DCC_FILEREAD)     
                 {                                               
-			sprintf(filebuf, "%s/%s", currentbot->uploaddir,
+		        snprintf(filebuf,sizeof(filebuf), "%s/%s", currentbot->uploaddir,
 				Descr);
                         if((Client->file = open( filebuf, O_WRONLY |
                         O_TRUNC | O_CREAT, 0644 ))==-1)

@@ -54,7 +54,7 @@ char	*real_root(char *path, char *buf)
  * i.e. /etc -> /home/bot/tmp/etc
  */
 {
-	sprintf(buf, "%s/%s", currentbot->downloaddir, path);
+        snprintf(buf,sizeof(buf), "%s/%s", currentbot->downloaddir, path);
 	return buf;
 }
 
@@ -107,7 +107,7 @@ char	*make_dir(char *old, char *new, char *dirbuffer)
 	
 
 	if(*new != '/')
-		sprintf(dirbuffer, "%s/%s", old, new);
+	        snprintf(dirbuffer,sizeof(dirbuffer), "%s/%s", old, new);
 	else
 		strcpy(dirbuffer, new);
 

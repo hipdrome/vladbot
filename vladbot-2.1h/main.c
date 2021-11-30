@@ -72,7 +72,7 @@ void 	sig_int ()
   	quit_all_bots (NULL, "Received SIGINT - Control-C!");
   	globallog (ERRFILE, "SIGNING OFF: Control-C (sigint) received");
   	dump_notelist ();
-  	exit (0);
+  	exit (EXIT_SUCCESS);
 }
 
 void 	sig_bus ()
@@ -95,7 +95,7 @@ void 	sig_segv ()
   	quit_all_bots (NULL, "Received SIGSEGV - core dumped");
   	globallog (ERRFILE, "SIGNING OFF: Segmentation violation (sigsegv) received");
   	dump_notelist ();
-   exit (0); 
+   exit (EXIT_SUCCESS); 
 
 }
 
@@ -165,7 +165,7 @@ int start_bots ()
 }
 
 
-void main (int argc, char *argv[])
+int main (int argc, char *argv[])
 {
   	char 	*arg;
   	char 	*myname;
@@ -194,7 +194,7 @@ void main (int argc, char *argv[])
 	  		printf ("                   1 = show errors\n");
 	  		printf ("                   2 = show detailed information\n");
 #endif
-	  		exit (0);
+	  		exit (EXIT_SUCCESS);
 	  		break;
 		case 'b':
 	  		do_fork = TRUE;
@@ -204,7 +204,7 @@ void main (int argc, char *argv[])
 	  		if (!*argv)
 	    		{
 	      			printf ("No configfile specified\n");
-	      			exit (0);
+	      			exit (EXIT_SUCCESS);
 	    		}
 	  		configfile = *argv;
 	  		argc--;
@@ -219,7 +219,7 @@ void main (int argc, char *argv[])
 	  		else
 	    		{
 	      			printf ("Invalid debugvalue!\n");
-	      			exit (0);
+	      			exit (EXIT_SUCCESS);
 	    		}
 #else
 	  		printf ("This version was not compiled with debugging enabled\n");
@@ -227,7 +227,7 @@ void main (int argc, char *argv[])
 	  		break;
 		default:
 	  		printf ("Unknown option %s\n", arg);
-	  		exit (1);
+	  		exit (EXIT_FAILURE);
 	  		break;
 		}
     	}
@@ -245,7 +245,9 @@ void main (int argc, char *argv[])
 			start_bots ();
       		}
     		else
-      			exit (0);
+      			exit (EXIT_SUCCESS);
   	else
     		start_bots ();
+
+        return EXIT_SUCCESS;
 }

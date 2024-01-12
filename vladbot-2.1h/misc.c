@@ -25,9 +25,10 @@
 #include <strings.h>
 #include <ctype.h>
 #include <sys/types.h>
-#include <sys/time.h>
+// #include <sys/time.h>
 #include <pwd.h>
 #include <unistd.h>
+#include <time.h>
 
 #include "config.h"
 #include "misc.h"
@@ -67,7 +68,7 @@ char	*getnick(char *nick_userhost)
 
 char	*time2str(long time)
 {
-	struct	tm	*btime;
+	struct tm	*btime;
 
 	btime = localtime(&time);
 	if(time && (sprintf(timebuf, "%-2.2d:%-2.2d:%-2.2d %s %-2.2d %d", 

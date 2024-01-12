@@ -1,2 +1,5 @@
 *.o
-vladbot-2.1h/helpread
+helpread
+VladBot
+.idea
+.DS_Store

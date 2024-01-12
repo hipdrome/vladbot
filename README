@@ -7,6 +7,10 @@ The author of this program (irvdwijk@cs.vu.nl) is absolutely not responsible
 for the use of this program or damage caused by it. Use at your own risk! 
 See file COPYING for further information
 
+New in 2.1i
+-----------
+- Various compilation and security fixes
+
 New in 2.1h
 -----------
 - Hopefully the S)ISLNK stuff works now.

@@ -137,7 +137,7 @@
 /* Standard stuff ---------------------------------------------------
    don't change anything below here
 */
-#define VERSION		"2.1h"
+#define VERSION		"2.1i"
 
 #define MAXLEN		255
 #define WAYTOBIG        1024
